@@ -20,6 +20,7 @@
 #include "main.h"
 #include "stdarg.h"
 #include "stdio.h"
+#include "stm32f3xx_hal.h"
 #include "string.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -104,10 +105,18 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USB_PCD_Init();
   /* USER CODE BEGIN 2 */
-  int x = 42;
-  float y = 3.14f;
-  myPrintf("Value of x = %d, y = %0.2f\r\n", x, y);
-
+  // int x = 42;
+  // float y = 3.14f;
+  // myPrintf("Value of x = %d, y = %0.2f\r\n", x, y);
+  int a = 2;
+  int b = 3;
+  HAL_Delay(1000);
+  myPrintf("a = %d, b = %d\r\n LHS: %d\r\n RHS: %d\r\n Identity Verified: ", a, b, (a+b) * (a+b), a*a + b*b + 2*a*b);
+  if ((a + b) * (a + b) == (a * a + b * b + 2 * a * b)) {
+      myPrintf("Yes\r\n");
+  } else {
+      myPrintf("No\r\n");
+  }
   /* USER CODE END 2 */
   
   /* Infinite loop */
@@ -116,6 +125,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
+    
   }
   /* USER CODE END 3 */
 }
