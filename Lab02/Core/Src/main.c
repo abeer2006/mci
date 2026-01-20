@@ -108,15 +108,38 @@ int main(void)
   // int x = 42;
   // float y = 3.14f;
   // myPrintf("Value of x = %d, y = %0.2f\r\n", x, y);
-  int a = 2;
-  int b = 3;
-  HAL_Delay(1000);
-  myPrintf("a = %d, b = %d\r\n LHS: %d\r\n RHS: %d\r\n Identity Verified: ", a, b, (a+b) * (a+b), a*a + b*b + 2*a*b);
-  if ((a + b) * (a + b) == (a * a + b * b + 2 * a * b)) {
-      myPrintf("Yes\r\n");
-  } else {
-      myPrintf("No\r\n");
+  // int a = 2;
+  // int b = 3;
+  // HAL_Delay(1000);
+  // myPrintf("a = %d, b = %d\r\n LHS: %d\r\n RHS: %d\r\n Identity Verified: ", a, b, (a+b) * (a+b), a*a + b*b + 2*a*b);
+  // if ((a + b) * (a + b) == (a * a + b * b + 2 * a * b)) {
+  //     myPrintf("Yes\r\n");
+  // } else {
+  //     myPrintf("No\r\n");
+  // }
+  char str[] = "Microcontrollers\r\n";
+  char encrypted[strlen(str)];
+  char decrypted[strlen(str)];
+  int key = 10266;
+  myPrintf("Original String:");
+  myPrintf(str);
+  myPrintf("\nEncrypted String:");
+  for (int i = 0; i < strlen(str); i++){
+      char ch = str[i] + (key % 256);
+      encrypted[i] = ch;
+      myPrintf("%c", ch);
   }
+  myPrintf("\nDecrypted String:");
+  for (int i = 0; i < strlen(str); i++){
+      char ch = encrypted[i] - (key % 256);
+      decrypted[i] = ch;
+      myPrintf("%c", ch);
+  }
+  // if (encrypted == decrypted) {
+  //     myPrintf("Correctly encrypted and decrypted\r\n");
+  // } else {
+  //     myPrintf("Correctly encrypted and decrypted\r\n");
+  // }
   /* USER CODE END 2 */
   
   /* Infinite loop */
