@@ -7,7 +7,6 @@ set(MX_Defines_Syms
 	STM32F303xC
     $<$<CONFIG:Debug>:DEBUG>
 )
-
 # STM32CubeMX generated include paths
 set(MX_Include_Dirs
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Core/Inc
@@ -93,3 +92,5 @@ set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES ADDITIONAL_CLEAN_FILES ${
 if((CMAKE_C_STANDARD EQUAL 90) OR (CMAKE_C_STANDARD EQUAL 99))
     message(ERROR "Generated code requires C11 or higher")
 endif()
+
+target_link_options (${CMAKE_PROJECT_NAME} PRIVATE -u _printf_float )
